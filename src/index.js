@@ -1,3 +1,5 @@
+const { connectDB } = require("./db/dbconnection");
+
 var http = require('http');
 var fs = require('fs');
 http.createServer(function (req, res) {
@@ -12,3 +14,6 @@ http.createServer(function (req, res) {
 // const express = require("express")
 // const app = express()
 // app.listen(8080)
+
+/** Database connection */
+connectDB()
