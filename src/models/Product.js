@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
         },
         product_price :{
             type : Number,
-            trim :true 
+            trim :true
         },
         product_desc : {
             type : String,

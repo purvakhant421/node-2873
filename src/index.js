@@ -1,23 +1,21 @@
-const { connectDB } = require("./db/dbconnection");
-const routes = require("./routes/v1");
+const express = require("express");
+const http = require("http");
+const { connectDB } = require("./db/dbConnection");
+const routes = require("./Routes/index.js");
+const config = require("./config/config");
 
-var http = require('http');
-var fs = require('fs');
-http.createServer(function (req, res) {
-  fs.readFile('demo.html',function(err,data){
-    res.writeHead(200,{'Content-Type': 'text/html'});
-    res.write(data); res.end(); });
-  }).listen(3000);
+const app = express();
 
-// express js
-// const express = require("express")
-// const app = express()
-// app.listen(8080)
-
-/** upload image */
-// app.use(express.static(`./public`));
 
 app.use("/v1", routes);
 
+
 /** Database connection */
 connectDB()
+
+/** create server using http */
+const server = http.createServer(app);
+
+server.listen(config.port, () => {
+  console.log("server listning port number 3000!");
+});
